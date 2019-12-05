@@ -1,0 +1,15 @@
+@startuml
+scale 2
+skinparam titleBorderRoundCorner 15
+skinparam titleBorderThickness 2
+skinparam titleBorderColor red
+skinparam titleBackgroundColor Aqua-CadetBlue
+
+title 项目报备与
+
+Alice -> Bob: Authentication Request
+... some times ...
+== 我是一条不安分的线 ==
+Bob --> Alice: Authentication Response
+
+@enduml
