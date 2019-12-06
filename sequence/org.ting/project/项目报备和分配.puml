@@ -1,15 +1,30 @@
 @startuml
-scale 2
+'scale 2
 skinparam titleBorderRoundCorner 15
 skinparam titleBorderThickness 2
 skinparam titleBorderColor red
 skinparam titleBackgroundColor Aqua-CadetBlue
 
-title 项目报备与
+title 项目线索与报备
 
-Alice -> Bob: Authentication Request
+我的线索 -> 报备: 新增报备
+== 新增项目报备 ==
+报备  -> 资源库: 选择客户\n资源类型为‘机构’和‘企业’
+我的资源 --> 报备: 返回资源ID(客户),资源名,资源编码
+报备 -> 资源库: 选择合伙人\n资源类型为‘自然人’,审核状态为‘通过’的资源
+资源库 --> 报备:返回资源id(合伙人),资源名，省级经理，人员id(省级经理id)
+报备 -> 用户信息: 选择商务专员
+用户信息 --> 报备: 返回商务专员
+报备 -> 组织架构: 选择地址信息
+组织架构 --> 报备: 返回地址信息
+报备 -> 报备: 填写其它信息保存
+报备 -> 报备: 1.校验项目名不能重复\n2.设置项目阶段为‘项目报备’\n3.生成项目编号\n4.设置是否废弃为‘否’\n5.设置项目分配状态为‘待分配’
+== 自动分配 ==
+报备 -> 项目分配区域: 通过省,市ID去匹配
+项目分配区域 -->x 报备: 不为一条直接返回
+项目分配区域 -> 人员职位分配:
 ... some times ...
 == 我是一条不安分的线 ==
-Bob --> Alice: Authentication Response
+
 
 @enduml
